@@ -24,6 +24,32 @@ inquirer
     },
     {
       type: "input",
+      message: "What is your GitHub username? (no @ needed)",
+      name: "username",
+      validate: (input) => {
+        if (input) {
+          return true;
+        } else {
+          console.log("A valid GitHub username is required to continue.");
+          return false;
+        }
+      },
+    },
+    {
+      type: "input",
+      message: "What what is the name of your GitHub repository? (no @ needed)",
+      name: "username",
+      validate: (input) => {
+        if (input) {
+          return true;
+        } else {
+          console.log("Please enter a repo name to continue.");
+          return false;
+        }
+      },
+    },
+    {
+      type: "input",
       message: "Please provide a description of your project:",
       name: "description",
       validate: (input) => {
@@ -35,6 +61,7 @@ inquirer
         }
       },
     },
+
     // Add more questions here
   ])
   .then((answers) => {
