@@ -1,13 +1,13 @@
-# ACME README Generator Pat.Pend. 
+# Acme README 3000
 
-  I have created a command-line application that dynamically generates a professional README.md file from the user's input using the Inquirer package, without spontaneous combusition or falling rocks (please do not run near open flames or desert highways).
+I have created a command-line application that allows the user to dynamically generate a professional README.md file, based on their unique input using the Inquirer package, all without tedious risk of spontaneous combustion or falling rocks (Caution - do not run near open flames or desert highways).
 
-  ## Installation
+## Installation
 
-  ## Usage
+## Usage
 
-  ## Contributing
+## Contributing
 
-  ## Tests
+## Tests
 
-  ## License
+## License
