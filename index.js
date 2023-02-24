@@ -1,21 +1,51 @@
+// Define all global requires
 const fs = require("fs");
-const path = require('path');
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
-// array of questions for user
-const questions = [
+console.log("Welcome to my README generator");
+console.log("Please answer the following questions");
 
-];
-
-// function to write README file
-function writeToFile(fileName, data) {
-}
-
-// function to initialize program
-function init() {
-
-}
-
-// function call to initialize program
-init();
+// Inquirer prompt to ask user questions
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "What is the title of your project?",
+      name: "title",
+      validate: (input) => {
+        if (input) {
+          return true;
+        } else {
+          console.log("Please enter a title to continue.");
+          return false;
+        }
+      },
+    },
+    {
+      type: "input",
+      message: "Please provide a description of your project:",
+      name: "description",
+      validate: (input) => {
+        if (input) {
+          return true;
+        } else {
+          console.log("Please enter a description to continue.");
+          return false;
+        }
+      },
+    },
+    // Add more questions here
+  ])
+  .then((answers) => {
+    const readmeContent = generateMarkdown(answers);
+    fs.writeFileSync("README.md", readmeContent);
+    console.log("README generated successfully!");
+  })
+  .catch((error) => {
+    if (error.isTtyError) {
+      console.log("Prompt could not be rendered in this environment.");
+    } else {
+      console.log("Something went wrong with inquirer prompt:", error);
+    }
+  });
