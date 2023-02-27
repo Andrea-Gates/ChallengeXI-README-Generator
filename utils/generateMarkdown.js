@@ -7,7 +7,7 @@ const generateMarkdown = (answers) =>
 
   ##### ${answers.logo}[${answers.userName}](${answers.GitHub})[Email Me](${
     answers.email
-  })[Deployed application]()#### AcmeReadMeGenerator©2023 All Rights reserved. ${renderLicenseBadge(
+  })[Deployed application]()#### AcmeReadMeGenerator©2023 All Rights reserved. ${getLicenseBadge(
     answers.license
   )} Free to Use, all material must be cited and credited.
 
@@ -70,7 +70,7 @@ const generateMarkdown = (answers) =>
 
 ## Authors and Acknowledgments
   ${data.author}
-git 
+
 
 ## Contact Information:
 * GitHub Username: ${data.userName}

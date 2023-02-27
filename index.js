@@ -3,6 +3,21 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
+function getLicenseBadge(licenses) {
+  switch (licenses) {
+    case "MIT":
+      return "[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+    case "GNU AGPL v3":
+      return "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+    case "Perl":
+      return "[![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Perl)";
+    case "Apache 2.0":
+      return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)] (https://opensource.org/licenses/Apache-2.0)";
+    case "None":
+      return "";
+  }
+}
+
 console.log("Welcome to my README generator");
 console.log("Please answer the following questions");
 
@@ -136,26 +151,14 @@ inquirer
       },
     },
   ])
+
   .then((answers) => {
     const readmePageContent = generateMarkdown(answers);
-    const licenseBadge = renderLicenseBadge(answers.license);
+    const licenseBadge = getLicenseBadge(answers.license);
 
-    fs.writeFileSync("README.md", readmePageContent + "\n" + licenseBadge);
+    fs.writeFileSync(
+      "README.md",
+      readmePageContent + "\n" + getLicenseBadge(answers.license)
+    );
     console.log("README generated successfully!");
   });
-
-function renderLicenseBadge(licenses) {
-  let badges = "";
-  for (const license of licenses) {
-    if (license === "MIT") {
-      badges += `![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg) `;
-    } else if (license === "GNU AGPL v3") {
-      badges += `![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg) `;
-    } else if (license === "Perl") {
-      badges += `![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg) `;
-    } else if (license === "Apache 2.0") {
-      badges += `![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg) `;
-    }
-  }
-  return badges;
-}
