@@ -70,8 +70,8 @@ const generateMarkdown = (answers) =>
 
 ## Authors and Acknowledgments
   ${data.author}
+git 
 
-  
 ## Contact Information:
 * GitHub Username: ${data.userName}
 * GitHub Email: ${data.userEmail}
