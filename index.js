@@ -3,27 +3,27 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
-function getLicenseBadge(licenses) {
-  switch (licenses) {
+function getLicenseBadge(license) {
+  switch (license) {
     case "MIT":
-      return "[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
-    case "GNU AGPL v3":
-      return "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
-    case "Perl":
-      return "[![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Perl)";
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+    case "GNU AGPLv3":
+      return "[![License: AGPLv3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)";
     case "Apache 2.0":
-      return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)] (https://opensource.org/licenses/Apache-2.0)";
+      return "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+    case "GPLv3":
+      return "[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)";
+    case "BSD 3":
+      return "[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
     case "None":
       return "";
   }
 }
 
-console.log("Welcome to my README generator");
-console.log("Please answer the following questions");
-
 // Inquirer prompt to ask user questions
 inquirer
   .prompt([
+    // questions here...
     {
       type: "input",
       message: "What is the title of your project?",
@@ -156,9 +156,15 @@ inquirer
     const readmePageContent = generateMarkdown(answers);
     const licenseBadge = getLicenseBadge(answers.license);
 
-    fs.writeFileSync(
+    fs.writeFile(
       "README.md",
-      readmePageContent + "\n" + getLicenseBadge(answers.license)
+      readmePageContent + "\n" + licenseBadge,
+      (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("README file created successfully!");
+        }
+      }
     );
-    console.log("README generated successfully!");
   });
