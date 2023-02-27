@@ -124,33 +124,38 @@ inquirer
     {
       type: "checkbox",
       message: "What license, if any, did you use for this repository:",
-      choices: [
-        "MIT",
-        "GNU General Public License",
-        "Apache License",
-        "Poetic",
-      ],
+      choices: ["MIT", "GNU AGPL v3", "Perl", "Apache 2.0", "None"],
       name: "license",
       validate: (input) => {
         if (input) {
           return true;
         } else {
-          console.log("Please check a license to continue.");
+          console.log("Please check an option to continue.");
           return false;
         }
       },
     },
   ])
-
   .then((answers) => {
-    const readmeContent = generateMarkdown(answers);
-    fs.writeFileSync("README.md", readmeContent);
+    const readmePageContent = generateMarkdown(answers);
+    const licenseBadge = renderLicenseBadge(answers.license);
+
+    fs.writeFileSync("README.md", readmePageContent + "\n" + licenseBadge);
     console.log("README generated successfully!");
-  })
-  .catch((error) => {
-    if (error.isTtyError) {
-      console.log("Prompt could not be rendered in this environment.");
-    } else {
-      console.log("Something went wrong with inquirer prompt:", error);
-    }
   });
+
+function renderLicenseBadge(licenses) {
+  let badges = "";
+  for (const license of licenses) {
+    if (license === "MIT") {
+      badges += `![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg) `;
+    } else if (license === "GNU AGPL v3") {
+      badges += `![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg) `;
+    } else if (license === "Perl") {
+      badges += `![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg) `;
+    } else if (license === "Apache 2.0") {
+      badges += `![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg) `;
+    }
+  }
+  return badges;
+}
