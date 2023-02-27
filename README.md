@@ -1,7 +1,7 @@
 
-# test
+# Acme README 300
 
-test
+The Acme README 300 relieves the headache of writing necessary README.mds without the usual risk of spontaneous combustion or falling rocks (Caution: do not use by open flames or desert highways).
 
 ## Table of Contents
 
@@ -13,22 +13,22 @@ test
 
 ## Installation
 
-test
+Go to the repository above and fork away
 
 ## Usage
 
-test
+Call the application from the CLI by "node index.js"
 
 ## Contributing
 
-test
+Absolutely, under the usual GitHub protocols
 
 ## Tests
 
-test
+You're looking at it.
 
 ## License
 
-This project is licensed under the MIT license.
+This project is licensed under the None license.
 
 undefined
