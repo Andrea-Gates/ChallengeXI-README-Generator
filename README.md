@@ -1,7 +1,7 @@
 
 # README Generator 4000
 
-Based on JavaScript the README 4000 offers the next generation in CLIs,... for, um for generating a README file for a GitHub repository. It uses the inquirer package to prompt the user for input and the fs package to write the README file to the file system.
+Based on JavaScript the README 4000 offers the next generation in CLIs,... for, um for generating a README file for a GitHub repository. It uses the inquirer package to prompt the user for input and the fs package to write the README file to the file system. To view a walkthrough of this bad boy in action, please go to: https://www.loom.com/share/985bd14e2d6343a5a275de1ac519d664/
 
 ## Table of Contents
 
